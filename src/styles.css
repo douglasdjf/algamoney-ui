@@ -5,6 +5,19 @@ body {
   color: #404C51;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+a.p-button:hover,
+a.p-button:focus {
+  text-decoration: none;
+}
+
 label {
   font-weight: bold;
 }
