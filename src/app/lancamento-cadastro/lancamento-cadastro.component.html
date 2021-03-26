@@ -21,7 +21,6 @@
         <p-calendar dateFormat="dd/mm/yy"></p-calendar>
       </div>
 
-
       <div class="p-col-12 p-md-9 p-fluid">
         <label>Descrição</label>
         <input pInputText type="text">
@@ -32,11 +31,11 @@
       </div>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Categoria</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="categorias" placeholder="Selecione"></p-dropdown>
       </div>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Pessoa</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true"></p-dropdown>
       </div>
       <div class="p-col-12 p-fluid">
         <label>Observação</label>
