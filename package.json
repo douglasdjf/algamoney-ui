@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.2.3",
     "@angular/router": "~11.2.3",
     "fontawesome": "^5.6.3",
+    "ng2-currency-mask": "^9.0.2",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.3.0-rc.1",
