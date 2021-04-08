@@ -11,14 +11,14 @@ export class MessageComponent {
 
   /**
    * Necessário colocar o NgModel no lugar do FormsControl pois mudou o formato, então tem  que ser NgModel.control.
-   * controle.control.
+   * control.control.
    */
   @Input() error: string = '';
-  @Input() controle!: NgModel;
+  @Input() control!: NgModel;
   @Input() text: string = '';
 
   temErro(): boolean {
-    return this.controle.control.hasError(this.error) && this.controle.control.dirty;
+    return this.control.control.hasError(this.error) && this.control.control.dirty;
   }
 
 }
