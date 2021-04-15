@@ -21,6 +21,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FormsModule } from '@angular/forms';
     PessoasPesquisaComponent,
     LancamentoCadastroComponent,
     PessoaCadastroComponent,
-    MessageComponent
+    MessageComponent,
+    LancamentosGridComponent,
+    PessoasGridComponent
   ],
   imports: [
     BrowserModule,
