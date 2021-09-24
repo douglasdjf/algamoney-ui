@@ -11,7 +11,7 @@ export class LancamentosGridComponent implements OnInit {
   /*
     Utilizado para receber parametros do outro componente para controle
   */
-  @Input() lancamentos =[];
+  @Input() lancamentos: any;
 
   ngOnInit(): void {
 
