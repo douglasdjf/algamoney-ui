@@ -45,20 +45,36 @@
       <div class="p-col-12 p-md-3 p-fluid">
         <label>Valor</label>
        <!--<p-inputNumber mode="currency" currency="BRL" placeholder="0,00"></p-inputNumber>-->
-         <input pInputText type="text" placeholder="0,00" name="valor" currencyMask
+         <input 
+          pInputText 
+          type="text" 
+          placeholder="0,00" 
+          name="valor" currencyMask
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel #valor name="valor"> 
+          ngModel 
+          #valor="ngModel"> 
+
+          <app-message [control]="valor" error="required"
+          text="Informe um valor "></app-message>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria [required]="true"></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" ngModel name="categoria"
+        #categoria="ngModel" [required]="true"></p-dropdown>
+
+        <app-message [control]="categoria" error="required"
+        text="Informe uma categoria "></app-message>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Pessoa</label>
         <p-dropdown [options]="pessoas" placeholder="Selecione"
-          [filter]="true"></p-dropdown>
+        [filter]="true" #pessoa="ngModel" ngModel name="pessoa" [required]="true"></p-dropdown>
+
+        
+        <app-message [control]="pessoa" error="required"
+        text="Informe uma pessoa "></app-message>
       </div>
 
       <div class="p-col-12 p-fluid">
