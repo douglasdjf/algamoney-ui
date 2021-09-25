@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {MessageModule} from 'primeng/message';
+import {MessagesModule} from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     CurrencyMaskModule,
     InputMaskModule,
     FormsModule,
-    InputNumberModule
+    InputNumberModule,
+    MessageModule,
+    MessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
