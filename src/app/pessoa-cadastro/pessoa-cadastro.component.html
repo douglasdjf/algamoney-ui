@@ -51,7 +51,7 @@
 
       <div class="p-col-12 p-md-4 p-fluid">
         <label>CEP</label>
-        <p-inputMask name="cep" mask="99.999-999" id="cep"
+        <p-inputMask name="cep" mask="99.999-999" id="cep"  placeholder="99.999-999"
           ngModel #cep="ngModel" ></p-inputMask>
 
         <app-message *nfIf="cepIsNotZero()"[control]="cep" error="required"
@@ -77,8 +77,8 @@
       </div>
 
       <div class="p-col-12">
-        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
-        <button pButton type="button" label="Novo" class="p-button-info"></button>
+        <button pButton type="submit" label="Salvar"  class="p-button-sm" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="Novo" class="p-button-info p-button-sm"></button>
 
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
