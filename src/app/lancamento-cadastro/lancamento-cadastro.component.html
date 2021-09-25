@@ -35,9 +35,10 @@
 
       <div class="p-col-12 p-md-3 p-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00" name="valor" currencyMask
+       <!--<p-inputNumber mode="currency" currency="BRL" placeholder="0,00"></p-inputNumber>-->
+         <input pInputText type="text" placeholder="0,00" name="valor" currencyMask
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel>
+          ngModel> 
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">

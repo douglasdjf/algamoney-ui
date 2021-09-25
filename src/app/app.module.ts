@@ -23,6 +23,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
-    FormsModule
+    FormsModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]
