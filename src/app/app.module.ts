@@ -10,10 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip' ;
 import { TableModule } from 'primeng/table';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
@@ -21,28 +19,28 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {MessageModule} from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
+import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LancamentosPesquisaComponent,
     NavbarComponent,
     PessoasPesquisaComponent,
-    LancamentoCadastroComponent,
     PessoaCadastroComponent,
     MessageComponent,
-    LancamentosGridComponent,
     PessoasGridComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+
+    LancamentosModule,
+
     ButtonModule,
     InputTextModule,
     TableModule,
@@ -57,6 +55,7 @@ import {MessagesModule} from 'primeng/messages';
     InputNumberModule,
     MessageModule,
     MessagesModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
