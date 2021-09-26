@@ -17,6 +17,7 @@ import { MessagesModule } from 'primeng/messages';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -30,6 +31,7 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ButtonModule,
     InputTextModule,
     TableModule,

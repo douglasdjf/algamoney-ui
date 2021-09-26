@@ -22,7 +22,7 @@
           name="vencimento" 
           [required]="true"></p-calendar>
 
-          <!-- <app-message [control]="vencimento" error="required" text="Informe a Data de Vencimento"></app-message>-->
+           <app-message [control]="vencimento" error="required" text="Informe a Data de Vencimento"></app-message>
       </div>
 
       <div class="p-col-6 p-md-3 p-fluid">
@@ -35,11 +35,11 @@
         <input pInputText type="text" name="descricao"
           ngModel #descricao="ngModel" required minlength="5">
 
-       <!-- <app-message [control]="descricao" error="required"
+        <app-message [control]="descricao" error="required"
           text="Informe uma descrição"></app-message>
 
         <app-message [control]="descricao" error="minlength"
-          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>-->
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
 
       <div class="p-col-12 p-md-3 p-fluid">
@@ -54,8 +54,8 @@
           ngModel 
           #valor="ngModel"> 
 
-          <!-- <app-message [control]="valor" error="required"
-          text="Informe um valor "></app-message>-->
+           <app-message [control]="valor" error="required"
+          text="Informe um valor "></app-message>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
@@ -63,8 +63,8 @@
         <p-dropdown [options]="categorias" placeholder="Selecione" ngModel name="categoria"
         #categoria="ngModel" [required]="true"></p-dropdown>
 
-        <!-- <app-message [control]="categoria" error="required"
-        text="Informe uma categoria "></app-message>-->
+        <app-message [control]="categoria" error="required"
+        text="Informe uma categoria "></app-message>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
@@ -73,8 +73,8 @@
         [filter]="true" #pessoa="ngModel" ngModel name="pessoa" [required]="true"></p-dropdown>
 
         
-       <!--   <app-message [control]="pessoa" error="required"
-        text="Informe uma pessoa "></app-message>-->
+        <app-message [control]="pessoa" error="required"
+        text="Informe uma pessoa "></app-message>
       </div>
 
       <div class="p-col-12 p-fluid">

@@ -20,6 +20,7 @@ import { MessagesModule } from 'primeng/messages';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -31,6 +32,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ButtonModule,
     InputTextModule,
     TableModule,
