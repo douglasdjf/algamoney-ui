@@ -1,12 +1,12 @@
-<p-table [value]="lancamentos" [paginator]="true" [rows]="5"
-    [responsive]="true">
+<p-table [value]="lancamentos" [paginator]="true" [rows]="5"  [showCurrentPageReport]="true" responsiveLayout="scroll"
+    [responsive]="true"  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,15]">
   <ng-template pTemplate="header">
     <tr>
-      <th>Pessoa</th>
-      <th>Descrição</th>
-      <th class="col-data-header">Vencimento</th>
-      <th class="col-data-header">Pagamento</th>
-      <th class="col-valor-header">Valor</th>
+      <th pSortableColumn="pessoa">Pessoa <p-sortIcon field="pessoa"></p-sortIcon></th>
+      <th pSortableColumn="descricao">Descricao <p-sortIcon field="descricao"></p-sortIcon></th>
+      <th pSortableColumn="dataVencimento">Vencimento <p-sortIcon field="dataVencimento"></p-sortIcon></th>
+      <th pSortableColumn="dataPagamento">Pagamento <p-sortIcon field="dataPagamento"></p-sortIcon></th>
+      <th pSortableColumn="valor">Valor <p-sortIcon field="valor"></p-sortIcon></th>
       <th class="col-acoes-header"></th>
     </tr>
   </ng-template>
