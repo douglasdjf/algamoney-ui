@@ -1,0 +1,52 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+
+
+
+
+
+@NgModule({
+  declarations: [
+    PessoasPesquisaComponent,
+    PessoaCadastroComponent,
+    PessoasGridComponent
+  ],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    TooltipModule,
+    InputTextareaModule,
+    CalendarModule,
+    SelectButtonModule,
+    DropdownModule,
+    InputMaskModule,
+    FormsModule,
+    InputNumberModule,
+    MessageModule,
+    MessagesModule
+  ],
+  exports:[
+    PessoasPesquisaComponent,
+    PessoaCadastroComponent
+  ]
+})
+export class PessoasModule { }

@@ -1,11 +1,11 @@
-<p-table [value]="pessoas" [responsive]="true"
-  [paginator]="true" [rows]="5">
+<p-table [value]="pessoas" [paginator]="true" [rows]="5"  [showCurrentPageReport]="true" responsiveLayout="scroll"
+[responsive]="true"  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,15]">
   <ng-template pTemplate="header">
     <tr>
-      <th>Nome</th>
-      <th>Cidade</th>
-      <th>Estado</th>
-      <th>Status</th>
+      <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+      <th pSortableColumn="cidade">Cidade <p-sortIcon field="cidade"></p-sortIcon></th>
+      <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
+      <th pSortableColumn="ativo">Status <p-sortIcon field="ativo"></p-sortIcon></th>
       <th class="col-acoes-header"></th>
     </tr>
   </ng-template>
