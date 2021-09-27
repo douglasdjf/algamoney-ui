@@ -39,6 +39,10 @@ export interface Pessoa {
     ativo: boolean
 }
 
+export interface LancamentoFiltro {
+    descricao: string;
+  }
+
 interface Endereco {
     logradouro: string,
     numero: number,

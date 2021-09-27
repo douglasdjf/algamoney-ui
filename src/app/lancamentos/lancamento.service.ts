@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse, Lancamento } from '../core/intrefaces';
+import { ApiResponse, Lancamento, LancamentoFiltro } from '../core/intrefaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,16 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(): Observable<ApiResponse<Lancamento>> {
+  pesquisar(filtro: LancamentoFiltro): Observable<ApiResponse<Lancamento>> {
     const headers = new HttpHeaders()
           .append('Authorization' , 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
 
-          return this.http.get<ApiResponse<Lancamento>>(`${this.lancamentoUrl}?resumo`, {headers});
+    let params = new HttpParams();
+
+    if(filtro.descricao){
+      params = params.set('descricao', filtro.descricao);
+    }
+
+          return this.http.get<ApiResponse<Lancamento>>(`${this.lancamentoUrl}?resumo`, {headers, params});
   }
 }
