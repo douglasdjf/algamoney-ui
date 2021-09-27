@@ -18,7 +18,7 @@ export class LancamentosPesquisaComponent implements OnInit  {
 
   pesquisar():void {
     this.lancamentoService.pesquisar()
-        .subscribe((dados:ApiResponse<Lancamento>) => this.lancamentos = dados.content)
+        .subscribe(dados=> this.lancamentos = dados.content)
   }
 
 
