@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,6 +22,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { SharedModule } from '../shared/shared.module';
+import { LancamentoService } from './lancamento.service';
 
 
 
@@ -32,6 +34,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+
     SharedModule,
     ButtonModule,
     InputTextModule,
@@ -51,6 +55,7 @@ import { SharedModule } from '../shared/shared.module';
   exports:[
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
-  ]
+  ],
+  providers:[LancamentoService]
 })
 export class LancamentosModule { }
