@@ -39,9 +39,15 @@ export interface Pessoa {
     ativo: boolean
 }
 
+
 export interface LancamentoFiltro {
-    descricao: string;
-  }
+    descricao?: string,
+    dataVencimentoInicio?: Date,
+    dataVencimentoFim?: Date,
+    pagina: number,
+    itensPorPagina: number
+}
+
 
 interface Endereco {
     logradouro: string,

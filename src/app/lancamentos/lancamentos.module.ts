@@ -37,6 +37,7 @@ import { LancamentoService } from './lancamento.service';
     HttpClientModule,
 
     SharedModule,
+    
     ButtonModule,
     InputTextModule,
     TableModule,
