@@ -48,6 +48,12 @@ export interface LancamentoFiltro {
     itensPorPagina: number
 }
 
+export interface PessoaFiltro{
+    nome? :string,
+    pagina: number,
+    itensPorPagina: number
+}
+
 
 interface Endereco {
     logradouro: string,

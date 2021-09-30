@@ -18,6 +18,7 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { SharedModule } from '../shared/shared.module';
+import { PessoaService } from './pessoa.service';
 
 
 
@@ -49,6 +50,7 @@ import { SharedModule } from '../shared/shared.module';
   exports:[
     PessoasPesquisaComponent,
     PessoaCadastroComponent
-  ]
+  ],
+  providers:[PessoaService]
 })
 export class PessoasModule { }
