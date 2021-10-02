@@ -57,6 +57,6 @@ import { LancamentoService } from './lancamento.service';
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
   ],
-  providers:[LancamentoService]
+  providers:[]
 })
 export class LancamentosModule { }
