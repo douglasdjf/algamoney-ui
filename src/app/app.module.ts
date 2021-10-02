@@ -8,6 +8,9 @@ import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -15,12 +18,17 @@ import { PessoasModule } from './pessoas/pessoas.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+
     AppRoutingModule,
     CoreModule,
     LancamentosModule,
-    PessoasModule  
+    PessoasModule,
+
+    ToastModule
+    
+    
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
