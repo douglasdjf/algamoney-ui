@@ -75,5 +75,18 @@ export class PessoasPesquisaComponent implements OnInit{
           )
   }
 
+  alternarStatus(pessoa: any): void{
+    const novoStatus = !pessoa.ativo;
 
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus).subscribe(
+      () =>{
+        const acao = novoStatus ? 'ativada' : 'desativada';
+
+        pessoa.ativo = novoStatus;
+        this.messageService.add({severity: 'success', detail: `Pessoa ${acao} com sucesso!`});
+      },
+      error => this.errorHandler.handle(error)
+      );
+
+  }
 }

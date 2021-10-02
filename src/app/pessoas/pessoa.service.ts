@@ -38,4 +38,12 @@ export class PessoaService {
 
           return this.http.delete<void>(`${this.pessoaUrl}/${codigo}`,{headers});
   }
+
+  mudarStatus(codigo: number, ativo: boolean): Observable<void> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<void>(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers });
+  }
 }
