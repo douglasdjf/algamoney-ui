@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent,MessageService  } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent,MessageService  } from 'primeng/api';
 import { ApiResponse, Lancamento, LancamentoFiltro } from 'src/app/core/intrefaces';
 import { LancamentoService } from '../lancamento.service';
 
@@ -22,7 +22,8 @@ export class LancamentosPesquisaComponent implements OnInit  {
   @ViewChild('tabela') grid:any;
 
   constructor(private lancamentoService:LancamentoService,
-              private messageService:MessageService){}
+              private messageService:MessageService,
+              private confirmationService: ConfirmationService){}
 
   ngOnInit(): void {
   
@@ -42,6 +43,15 @@ export class LancamentosPesquisaComponent implements OnInit  {
   aoMudarPagina(event: LazyLoadEvent){
     const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
+  }
+
+  confirmarExclusao(lancamento: Lancamento):void {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept:()=>{
+        this.excluir(lancamento);
+      }
+    })
   }
 
   excluir(lancamento: Lancamento){

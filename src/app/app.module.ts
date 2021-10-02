@@ -11,6 +11,9 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,17 +21,21 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     AppRoutingModule,
+
     CoreModule,
     LancamentosModule,
     PessoasModule,
 
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
     
     
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
