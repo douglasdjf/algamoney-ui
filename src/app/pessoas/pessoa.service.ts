@@ -31,4 +31,11 @@ export class PessoaService {
     return this.http.get<ApiResponse<Pessoa>>(`${this.pessoaUrl}`,{headers,params});
     
   }
+
+  excluir(codigo:number): Observable<void>{
+    const headers = new HttpHeaders()
+         .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+
+          return this.http.delete<void>(`${this.pessoaUrl}/${codigo}`,{headers});
+  }
 }

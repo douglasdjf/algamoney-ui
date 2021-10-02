@@ -8,17 +8,16 @@ export class ErrorHandlerService {
 
   constructor(private messageService:MessageService) { }
 
-  handle(errorResponse: any){
+  handle(errorResponse: any) {
     let msg: string;
 
-    if(typeof errorResponse === 'string'){
+    if (typeof errorResponse === 'string') {
       msg = errorResponse;
     } else {
-      msg = 'Erro ao processar serviço remoto. Tente Novamente.';
+      msg = 'Erro ao processar serviço remoto. Tente novamente.';
       console.error('Ocorreu um erro', errorResponse);
     }
 
-
-    this.messageService.add({severity:'error', detail:msg});
+    this.messageService.add({ severity:'error', detail: msg });
   }
 }
