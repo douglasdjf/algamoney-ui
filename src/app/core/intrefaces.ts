@@ -1,4 +1,4 @@
-export interface ApiResponse<T> {
+export interface IApiResponse<T> {
     content: T[],
     last: boolean,
     totalPages: number,
@@ -15,32 +15,31 @@ export interface ApiResponse<T> {
     empty: boolean
 }
 
-export interface Lancamento {
+export interface ILancamento {
     codigo: number,
     descricao: string,
     dataVencimento: Date,
     dataPagamento?: Date,
     valor: number,
     observacao: string,
-    tipo: 'RECEITA' | 'DESPESA',
-    categoria: Categoria,
-    pessoa: Pessoa
+    tipo: string,
+    categoria: ICategoria,
+    pessoa: IPessoa
 }
 
-export interface Categoria {
-    codigo: number,
-    nome: string
+export interface ICategoria {
+    codigo: number | undefined,
+    nome: string | undefined
 }
 
-export interface Pessoa {
+export interface IPessoa {
     codigo: number,
     nome: string,
-    endereco: Endereco,
+    endereco: IEndereco,
     ativo: boolean
 }
 
-
-export interface LancamentoFiltro {
+export interface ILancamentoFiltro {
     descricao?: string,
     dataVencimentoInicio?: Date,
     dataVencimentoFim?: Date,
@@ -48,14 +47,13 @@ export interface LancamentoFiltro {
     itensPorPagina: number
 }
 
-export interface PessoaFiltro{
-    nome? :string,
-    pagina: number,
-    itensPorPagina: number
-}
+export interface IPessoaFiltro {
+    nome?: string;
+    pagina: number;
+    itensPorPagina: number;
+  }
 
-
-interface Endereco {
+export interface IEndereco {
     logradouro: string,
     numero: number,
     complemento?: string,

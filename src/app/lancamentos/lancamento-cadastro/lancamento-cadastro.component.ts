@@ -1,6 +1,11 @@
+import { FormControl, NgForm } from '@angular/forms';
+import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
-import { CategoriaService } from 'src/app/categorias/categoria.service';
+
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { PessoaService } from 'src/app/pessoas/pessoa.service';
+import { CategoriaService } from './../../categorias/categoria.service';
+import { ILancamento, IPessoa } from 'src/app/core/intrefaces';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -8,40 +13,55 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
   styleUrls: ['./lancamento-cadastro.component.css']
 })
 export class LancamentoCadastroComponent implements OnInit {
+  
+  lancamento: ILancamento = new Lancamento();
 
-categorias: any[] = [];
-
-pessoas = [
-  { label:'João da Silva', value: 1 },
-  { label:'Sebastião Souza', value: 2 },
-  { label:'Maria Abadia', value: 3 }
-
-];
+  categorias: any[] = [];
+  pessoas: any[] = []
 
   tipos = [
-    { label:'Receita', value: 'RECEITA' },
-    { label:'Despesa', value: 'DESPESA' },
+    { label: 'Receita', value: 'RECEITA' },
+    { label: 'Despesa', value: 'DESPESA' },
   ];
 
-  constructor(private categoriaService:CategoriaService,
-              private errorHandler: ErrorHandlerService) { }
+
+
+  
+  constructor(
+    private categoriaService: CategoriaService,
+    private pessoaService: PessoaService,
+    private errorHandler: ErrorHandlerService
+  ) { }
 
   ngOnInit(): void {
-    this.carregarCategorias();
+    console.log(this.lancamento);
+    
+    this.carregarCategorias()
+    this.carregarPessoas()
   }
 
-  carregarCategorias(){
+  carregarCategorias() {
     return this.categoriaService.listarTodas().subscribe(
-        categorias =>{
-            this.categorias = categorias.map(dado =>{
-              return {
-                label: dado.nome,
-                value: dado.codigo
-              }
-            })
-        },
-        erro =>{this.errorHandler.handle(erro)}
-        )
-    }
+      dados => {
+        this.categorias = dados.map(dado => ({label: dado.nome, value: dado.codigo}))                  
+      },
+      erro => this.errorHandler.handle(erro)
+    )
+  }
+
+  carregarPessoas() {
+    this.pessoaService.listarTodas().subscribe(
+      dados => {        
+        this.pessoas = dados.content.map((dado: IPessoa) => ({label: dado.nome, value: dado.codigo}))     
+      },      
+      erro => this.errorHandler.handle(erro)
+    )
+  }
+
+  salvar(lancamentoForm: NgForm) {
+    console.log(this.lancamento);
+    console.log(lancamentoForm);
+    
+  }
 
 }

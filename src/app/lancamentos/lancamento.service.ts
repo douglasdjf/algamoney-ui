@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FilterOperator } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { ApiResponse, Lancamento, LancamentoFiltro } from '../core/intrefaces';
+import {  IApiResponse, ILancamento, ILancamentoFiltro } from '../core/intrefaces';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class LancamentoService {
   constructor(private http: HttpClient,
               private datePipe: DatePipe) { }
 
-  pesquisar(filtro: LancamentoFiltro): Observable<ApiResponse<Lancamento>> {
+  pesquisar(filtro: ILancamentoFiltro): Observable<IApiResponse<ILancamento>> {
   
     const headers = new HttpHeaders()
           .append('Authorization' , 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
@@ -36,7 +36,7 @@ export class LancamentoService {
       params = params.set('dataVencimentoAte',this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
     }
 
-      return this.http.get<ApiResponse<Lancamento>>(`${this.lancamentoUrl}?resumo`, { headers, params });
+      return this.http.get<IApiResponse<ILancamento>>(`${this.lancamentoUrl}?resumo`, { headers, params });
    
   }
 

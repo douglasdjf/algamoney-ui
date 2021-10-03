@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse, Pessoa, PessoaFiltro } from '../core/intrefaces';
 import { Observable } from 'rxjs';
+import { IApiResponse, IPessoa, IPessoaFiltro } from '../core/intrefaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class PessoaService {
   constructor(private http:HttpClient,
               private datePipe:DatePipe) { }
 
-  pesquisar(filtro: PessoaFiltro): Observable<ApiResponse<Pessoa>>{
+  pesquisar(filtro: IPessoaFiltro): Observable<IApiResponse<IPessoa>>{
 
       const headers = new HttpHeaders()
                 .append('Authorization' , 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
@@ -28,7 +28,7 @@ export class PessoaService {
       }
 
     
-    return this.http.get<ApiResponse<Pessoa>>(`${this.pessoaUrl}`,{headers,params});
+    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{headers,params});
     
   }
 
@@ -45,5 +45,13 @@ export class PessoaService {
       .append('Content-Type', 'application/json');
 
     return this.http.put<void>(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers });
+  }
+
+  listarTodas(): Observable<IApiResponse<IPessoa>>{
+    const headers = new HttpHeaders()
+          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    
+    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{headers});
+
   }
 }
