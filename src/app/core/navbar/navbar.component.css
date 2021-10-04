@@ -7,31 +7,32 @@
   color: #fff;
 }
 
-.navbar-menu{
+.navbar-menu {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   width: 210px;
   margin: 0;
-  z-index: 9998;
   padding: 0;
+  z-index: 9998;
+
   background-color: #3a3633;
+
   list-style: none;
 }
 
-
-.navbar-usuario{
+.navbar-usuario {
   padding: 15px;
   margin-bottom: 15px;
   border-bottom: 1px solid #525151;
+
   text-transform: uppercase;
   font-weight: bold;
   color: #fff;
 }
 
-
-.navbar-menuitem{
+.navbar-menuitem {
   padding: 15px;
 }
 
@@ -41,6 +42,9 @@
 }
 
 .navbar-menuitem a:hover {
-  color:#fff;
+  color: #fff;
 }
 
+.navbar-menuitem.ativo {
+  background-color: #494541;
+}
