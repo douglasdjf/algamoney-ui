@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -45,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     
     MessageService,
     ConfirmationService,
-    TranslateService
+    TranslateService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class CoreModule { }
