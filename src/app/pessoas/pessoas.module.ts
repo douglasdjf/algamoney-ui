@@ -19,6 +19,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { SharedModule } from '../shared/shared.module';
 import { PessoaService } from './pessoa.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -34,6 +35,7 @@ import { PessoaService } from './pessoa.service';
     CommonModule,
     SharedModule,
     ButtonModule,
+    RouterModule,
     InputTextModule,
     TableModule,
     TooltipModule,

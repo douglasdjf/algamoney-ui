@@ -17,6 +17,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,

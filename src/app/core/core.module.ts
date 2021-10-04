@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -22,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   declarations: [NavbarComponent],
   imports: [
     CommonModule,
+    RouterModule,
 
     ToastModule,
     ConfirmDialogModule,
