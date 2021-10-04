@@ -20,6 +20,17 @@ export class Categoria  {
 export class Pessoa implements IPessoa {
     codigo!: number;
     nome!: string;
-    endereco!: IEndereco;
-    ativo!: boolean;
+    endereco = new Endereco();
+    ativo = true;
 }
+
+class Endereco {
+    logradouro!: string;
+    numero!: number;
+    complemento!: string;
+    bairro!: string;
+    cep!: string;
+    cidade!: string;
+    estado!: string;
+}
+
