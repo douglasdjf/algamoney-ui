@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FilterOperator } from 'primeng/api';
 import { Observable } from 'rxjs';
 import {  IApiResponse, ILancamento, ILancamentoFiltro } from '../core/intrefaces';
 
@@ -45,5 +44,13 @@ export class LancamentoService {
             .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
 
       return this.http.delete<void>(`${this.lancamentoUrl}/${codigo}`,{headers});
+  }
+
+  adicionar(lancamento: ILancamento): Observable<ILancamento>{
+    const headers = new HttpHeaders()
+          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+          .append('Content-Type', 'application/json');
+
+          return this.http.post<ILancamento>(this.lancamentoUrl,lancamento,{headers});
   }
 }
