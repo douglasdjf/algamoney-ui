@@ -53,4 +53,20 @@ export class LancamentoService {
 
           return this.http.post<ILancamento>(this.lancamentoUrl,lancamento,{headers});
   }
+
+  atualizar(lancamento: ILancamento): Observable<ILancamento>{
+    const headers = new HttpHeaders()
+        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+        .append('Content-Type', 'application/json');
+
+        return this.http.put<ILancamento>(this.lancamentoUrl,lancamento,{headers});
+  }
+
+  buscarPorCodigo(codigo: number) : Observable<ILancamento>{
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get<ILancamento>(`${this.lancamentoUrl}/${codigo}`, { headers });
+
+  }
 }
