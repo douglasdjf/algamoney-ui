@@ -15,17 +15,9 @@ import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pes
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
 import { DatePipe } from '@angular/common';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const routes:Routes =[
-  {path: '', redirectTo:'lancamentos', pathMatch:'full'},
-  {path: 'lancamentos', component: LancamentosPesquisaComponent},
-  {path: 'lancamentos/novo', component: LancamentoCadastroComponent},
-  {path: 'lancamentos/:codigo', component: LancamentoCadastroComponent},
-  {path: 'pessoas', component: PessoasPesquisaComponent },
-  {path: 'pessoas/novo', component:PessoaCadastroComponent},
-  {path: 'pagina-nao-encontrada', component:PaginaNaoEncontradaComponent},
-  {path: '**', redirectTo:'pagina-nao-encontrada'}
-]
+
 
 @NgModule({
   declarations: [
@@ -35,7 +27,7 @@ const routes:Routes =[
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
 
     CoreModule,
     LancamentosModule,
