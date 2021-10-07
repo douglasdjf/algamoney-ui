@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { relativeTimeThreshold } from 'moment';
 import { ConfirmationService, LazyLoadEvent,MessageService  } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ILancamento, ILancamentoFiltro,   } from 'src/app/core/intrefaces';
@@ -25,10 +27,11 @@ export class LancamentosPesquisaComponent implements OnInit  {
   constructor(private lancamentoService:LancamentoService,
               private messageService:MessageService,
               private confirmationService: ConfirmationService,
-              private errorHandler: ErrorHandlerService){}
+              private errorHandler: ErrorHandlerService,
+              private title:Title){}
 
   ngOnInit(): void {
-  
+    this.title.setTitle('Pesquisa de Lançamentos');
   }
 
   pesquisar(pagina: number = 0): void {

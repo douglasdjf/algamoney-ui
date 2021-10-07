@@ -49,10 +49,7 @@ import { RouterModule } from '@angular/router';
     MessageModule,
     MessagesModule
   ],
-  exports:[
-    PessoasPesquisaComponent,
-    PessoaCadastroComponent
-  ],
+  exports:[],
   providers:[PessoaService]
 })
 export class PessoasModule { }
