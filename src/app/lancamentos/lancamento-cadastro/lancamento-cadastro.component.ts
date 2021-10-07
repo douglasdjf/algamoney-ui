@@ -9,6 +9,7 @@ import { ILancamento, IPessoa } from 'src/app/core/intrefaces';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -20,41 +21,44 @@ export class LancamentoCadastroComponent implements OnInit {
   lancamento: ILancamento = new Lancamento();
 
   categorias: any[] = [];
-  pessoas: any[] = [];
+  pessoas: any[] = []
 
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' },
   ];
-
+  
   constructor(
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
-    private errorHandler: ErrorHandlerService,
-    private lancamentoService: LancamentoService,
+    private lancamentoService: LancamentoService,    
     private messageService: MessageService,
-    private route:ActivatedRoute
+    private errorHandler: ErrorHandlerService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-   const codigoLancamento = this.route.snapshot.params['codigo'];
+    const codigoLancamento = this.route.snapshot.params['codigo'];
 
-   if(codigoLancamento){
-     this.carregarLancamento(codigoLancamento)
-   }
- 
+    if (codigoLancamento) {
+      this.carregarLancamento(codigoLancamento)
+    }
+
     this.carregarCategorias()
     this.carregarPessoas()
   }
 
-  carregarLancamento(codigo: number){
+  get editando() {
+    return Boolean(this.lancamento.codigo)
+  }
+  
+  carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo)
-    .subscribe(lancamento =>{
-      this.converterStringsParaDatas([lancamento]);
-      this.lancamento = lancamento;
-    },
-      erro => this.errorHandler.handle(erro)
-    )
+      .subscribe(lancamento => {
+        this.lancamentoService.converterStringsParaDatas([lancamento]);
+        this.lancamento = lancamento;
+      },
+      erro => this.errorHandler.handle(erro));
   }
 
   carregarCategorias() {
@@ -76,6 +80,26 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(lancamentoForm: NgForm) {
+    if (this.editando) {
+      this.atualizarLancamento(lancamentoForm)
+    } else {
+      this.adicionarLancamento(lancamentoForm)
+    }
+  }
+
+  atualizarLancamento(lancamentoForm: NgForm) {
+    this.lancamentoService.atualizar(this.lancamento)
+      .subscribe(
+        (lancamentoAtualizado) => {
+          this.lancamentoService.converterStringsParaDatas([lancamentoAtualizado]);
+          this.lancamento = lancamentoAtualizado;
+          this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso!' });
+        },
+        erro => this.errorHandler.handle(erro)
+      )
+  }
+
+  adicionarLancamento(lancamentoForm: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
       .subscribe(
         () => {
@@ -85,18 +109,21 @@ export class LancamentoCadastroComponent implements OnInit {
           this.lancamento = new Lancamento();
         },
         erro => this.errorHandler.handle(erro)
-      );  
-  
+      );    
   }
-
+  
   private converterStringsParaDatas(lancamentos: ILancamento[]) {
 
     for (const lancamento of lancamentos) {
       
       lancamento.dataVencimento = new Date(lancamento.dataVencimento);
+      console.log("converterStringsParaDatas");
+      console.log("lancamento.dataVencimento  "+ lancamento.dataVencimento);
 
       if (lancamento.dataPagamento) {
         lancamento.dataPagamento = new Date(lancamento.dataPagamento); 
+
+        console.log("lancamento.dataPagamento  "+ lancamento.dataPagamento);
       } 
     }
   }

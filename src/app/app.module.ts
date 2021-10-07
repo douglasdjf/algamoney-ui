@@ -13,6 +13,7 @@ import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
+import { DatePipe } from '@angular/common';
 
 const routes:Routes =[
   {path: 'lancamentos', component: LancamentosPesquisaComponent},
@@ -36,7 +37,7 @@ const routes:Routes =[
     LancamentosModule,
     PessoasModule
   ],
-  providers: [ ],
+  providers: [DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@ export interface ILancamento {
     dataVencimento: Date,
     dataPagamento?: Date,
     valor: number,
-    observacao: string,
+    observacao?: string,
     tipo: string,
     categoria: ICategoria,
     pessoa: IPessoa
