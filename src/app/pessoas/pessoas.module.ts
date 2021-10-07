@@ -20,6 +20,7 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { SharedModule } from '../shared/shared.module';
 import { PessoaService } from './pessoa.service';
 import { RouterModule } from '@angular/router';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 
 
@@ -47,7 +48,9 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     InputNumberModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+
+    PessoasRoutingModule
   ],
   exports:[],
   providers:[PessoaService]

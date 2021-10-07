@@ -63,4 +63,20 @@ export class PessoaService {
       return this.http.post<IPessoa>(this.pessoaUrl,pessoa,{headers});
 
   }
+
+  atualizar(pessoa: IPessoa): Observable<IPessoa>{
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
+
+  return this.http.put<IPessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa, { headers });
+  }
+
+  buscarPeloCodigo(codigo: number): Observable<IPessoa>{
+    const headers = new HttpHeaders()
+          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+          .append('Content-Type', 'application/json');
+
+          return this.http.get<IPessoa>(`${this.pessoaUrl}/${codigo}`,{headers});
+  }
 }

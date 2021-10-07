@@ -27,13 +27,15 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
 
     CoreModule,
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+
+    
+    AppRoutingModule,
   ],
-  providers: [DatePipe ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

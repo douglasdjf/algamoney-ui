@@ -5,6 +5,8 @@ import { MessageService } from 'primeng/api';
 import { Pessoa } from 'src/app/core/model';
 import { IPessoa } from 'src/app/core/intrefaces';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -18,9 +20,30 @@ export class PessoaCadastroComponent implements OnInit {
 
   constructor(private errorHandlerService:ErrorHandlerService,
               private pessoaService: PessoaService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private router:Router,
+              private title:Title,
+              private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Nova Pessoa');
+    const codigoPessoa = this.route.snapshot.params['codigo'];
+
+    if(codigoPessoa){
+      this.carregarPessoa(codigoPessoa)
+    }
+  }
+
+  carregarPessoa(codigo: number){
+    this.pessoaService.buscarPeloCodigo(codigo)
+        .subscribe(
+          pessoa =>{
+            this.pessoa = pessoa;
+            this.atualizarTituloEdicao();
+          },
+          erro => this.errorHandlerService.handle(erro)
+        );
+
   }
 
 
@@ -31,18 +54,53 @@ export class PessoaCadastroComponent implements OnInit {
     return true;
   }
 
+  get editando() {
+    return Boolean(this.pessoa.codigo)
+  }
+
   salvar(pessoaForm: NgForm){
-      this.pessoaService.adicionar(this.pessoa)
-          .subscribe(
-              () =>{
-                  this.messageService.add({severity:'success',detail: 'Pessoa cadastrada com sucesso!'});
-                  pessoaForm.reset();
-                  this.pessoa = new Pessoa();
-              },
-              erro => this.errorHandlerService.handle(erro)
+    if (this.editando) {
+      this.atualizarPessoa(pessoaForm);
+    } else {
+      this.adicionarPessoa(pessoaForm);
+    }
 
-          );
+  }
 
+  atualizarPessoa(pessoaForm: NgForm){
+    this.pessoaService.atualizar(this.pessoa)
+    .subscribe(
+      (pessoaAtualizado) => {
+        this.pessoa = pessoaAtualizado;
+        this.atualizarTituloEdicao();
+        this.messageService.add({ severity: 'success', detail: 'Pessoa alterado com sucesso!' });
+      },
+      erro => this.errorHandlerService.handle(erro)
+    )
+
+  }
+
+  adicionarPessoa(pessoaForm: NgForm){
+    this.pessoaService.adicionar(this.pessoa)
+    .subscribe(
+        (pessoaAdicionada) =>{
+            this.messageService.add({severity:'success',detail: 'Pessoa cadastrada com sucesso!'});
+           // pessoaForm.reset();
+           // this.pessoa = new Pessoa();
+           this.router.navigate(['/pessoas',pessoaAdicionada.codigo])
+        },
+        erro => this.errorHandlerService.handle(erro)
+
+    );
+  }
+
+  novo(pessoaForm: NgForm){
+    pessoaForm.reset(new Pessoa())
+    this.router.navigate(['/pessoas/novo'])
+  }
+
+  private atualizarTituloEdicao() {
+    this.title.setTitle(`Edição de lançamento: ${this.pessoa.nome}`);
   }
 
 }
