@@ -14,6 +14,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../seguranca/auth.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -29,7 +30,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
     ToastModule,
     ConfirmDialogModule,
-
+  
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MessageService,
     ConfirmationService,
     TranslateService,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     Title
   ]
