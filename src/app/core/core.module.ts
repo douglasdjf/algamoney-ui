@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MessageService,
     ConfirmationService,
     TranslateService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    Title
   ]
 })
 export class CoreModule { }
