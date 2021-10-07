@@ -8,8 +8,7 @@ import { CategoriaService } from './../../categorias/categoria.service';
 import { ILancamento, IPessoa } from 'src/app/core/intrefaces';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -34,7 +33,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,    
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -102,30 +102,20 @@ export class LancamentoCadastroComponent implements OnInit {
   adicionarLancamento(lancamentoForm: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
       .subscribe(
-        () => {
+        (lancamentoAdicionado) => {
           this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
 
-          lancamentoForm.reset();
-          this.lancamento = new Lancamento();
+        //  lancamentoForm.reset();
+        //  this.lancamento = new Lancamento();
+         this.router.navigate(['/lancamentos',lancamentoAdicionado.codigo])
         },
         erro => this.errorHandler.handle(erro)
       );    
   }
   
-  private converterStringsParaDatas(lancamentos: ILancamento[]) {
-
-    for (const lancamento of lancamentos) {
-      
-      lancamento.dataVencimento = new Date(lancamento.dataVencimento);
-      console.log("converterStringsParaDatas");
-      console.log("lancamento.dataVencimento  "+ lancamento.dataVencimento);
-
-      if (lancamento.dataPagamento) {
-        lancamento.dataPagamento = new Date(lancamento.dataPagamento); 
-
-        console.log("lancamento.dataPagamento  "+ lancamento.dataPagamento);
-      } 
-    }
+  novo(lancamentoForm: NgForm){
+    lancamentoForm.reset(new Lancamento());
+    this.router.navigate(['/lancamentos/novo'])
   }
 
 }
