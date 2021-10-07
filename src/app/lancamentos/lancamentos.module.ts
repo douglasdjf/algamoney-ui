@@ -17,16 +17,13 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
-
-
+import { LancamentoRoutingModule } from './lancamento-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -39,7 +36,8 @@ import { RouterModule } from '@angular/router';
 
     CurrencyMaskModule,
 
-    SharedModule
+    SharedModule,
+    LancamentoRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
