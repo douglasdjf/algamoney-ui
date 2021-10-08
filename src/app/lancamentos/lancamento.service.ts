@@ -16,8 +16,6 @@ export class LancamentoService {
               private datePipe: DatePipe) { }
 
   pesquisar(filtro: ILancamentoFiltro): Observable<IApiResponse<ILancamento>> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
       
     let params = new HttpParams()
                       .set('page', filtro.pagina.toString())
@@ -36,19 +34,17 @@ export class LancamentoService {
       params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
     }
 
-    return this.http.get<IApiResponse<ILancamento>>(`${this.lancamentosUrl}?resumo`, { headers, params });
+    return this.http.get<IApiResponse<ILancamento>>(`${this.lancamentosUrl}?resumo`, { params });
   }
 
   excluir(codigo: number): Observable<void> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.http.delete<void>(`${this.lancamentosUrl}/${codigo}`, { headers });
   }
 
   adicionar(lancamento: ILancamento): Observable<ILancamento> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
   
     return this.http.post<ILancamento>(this.lancamentosUrl, lancamento, { headers });
@@ -56,17 +52,13 @@ export class LancamentoService {
 
   atualizar(lancamento: ILancamento): Observable<ILancamento> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
   
     return this.http.put<ILancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers });
   }
 
   buscarPorCodigo(codigo: number): Observable<ILancamento> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.http.get<ILancamento>(`${this.lancamentosUrl}/${codigo}`, { headers });
+    return this.http.get<ILancamento>(`${this.lancamentosUrl}/${codigo}`);
   }
 
 

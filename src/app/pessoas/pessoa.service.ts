@@ -15,10 +15,6 @@ export class PessoaService {
               private datePipe:DatePipe) { }
 
   pesquisar(filtro: IPessoaFiltro): Observable<IApiResponse<IPessoa>>{
-
-      const headers = new HttpHeaders()
-                .append('Authorization' , 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-
       let params = new HttpParams()
                 .set('page', filtro.pagina.toString())
                 .set('size', filtro.itensPorPagina.toString());
@@ -28,36 +24,29 @@ export class PessoaService {
       }
 
     
-    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{headers,params});
+    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{params});
     
   }
 
   excluir(codigo:number): Observable<void>{
-    const headers = new HttpHeaders()
-         .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-
-          return this.http.delete<void>(`${this.pessoaUrl}/${codigo}`,{headers});
+          return this.http.delete<void>(`${this.pessoaUrl}/${codigo}`);
   }
 
   mudarStatus(codigo: number, ativo: boolean): Observable<void> {
     const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
 
     return this.http.put<void>(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers });
   }
 
   listarTodas(): Observable<IApiResponse<IPessoa>>{
-    const headers = new HttpHeaders()
-          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     
-    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{headers});
+    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`);
 
   }
 
   adicionar(pessoa: IPessoa): Observable<IPessoa>{
       const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
       .append('Content-Type', 'application/json');
 
       return this.http.post<IPessoa>(this.pessoaUrl,pessoa,{headers});
@@ -66,7 +55,6 @@ export class PessoaService {
 
   atualizar(pessoa: IPessoa): Observable<IPessoa>{
     const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
     .append('Content-Type', 'application/json');
 
   return this.http.put<IPessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa, { headers });
@@ -74,9 +62,7 @@ export class PessoaService {
 
   buscarPeloCodigo(codigo: number): Observable<IPessoa>{
     const headers = new HttpHeaders()
-          .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
           .append('Content-Type', 'application/json');
-
           return this.http.get<IPessoa>(`${this.pessoaUrl}/${codigo}`,{headers});
   }
 }
