@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,21 +9,17 @@ import { AuthService } from '../auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+               private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(): void {
   }
 
   login(usuario: string , senha: string){
     this.auth.login(usuario,senha)
-        .subscribe(
-          (response)=>{
-            console.log(response);
-          },
-          (response) =>{
-            console.log(response);
-          }
-        );
+    .catch(error => {
+      this.errorHandler.handle(error);
+    });
   }
 
 }
