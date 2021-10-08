@@ -44,17 +44,11 @@ export class LancamentoService {
   }
 
   adicionar(lancamento: ILancamento): Observable<ILancamento> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-  
-    return this.http.post<ILancamento>(this.lancamentosUrl, lancamento, { headers });
+    return this.http.post<ILancamento>(this.lancamentosUrl, lancamento);
   }
 
-  atualizar(lancamento: ILancamento): Observable<ILancamento> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-  
-    return this.http.put<ILancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers });
+  atualizar(lancamento: ILancamento): Observable<ILancamento> {  
+    return this.http.put<ILancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento);
   }
 
   buscarPorCodigo(codigo: number): Observable<ILancamento> {

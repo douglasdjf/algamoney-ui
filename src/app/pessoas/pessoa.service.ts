@@ -40,24 +40,16 @@ export class PessoaService {
   }
 
   listarTodas(): Observable<IApiResponse<IPessoa>>{
-    
     return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`);
-
   }
 
   adicionar(pessoa: IPessoa): Observable<IPessoa>{
-      const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
-
-      return this.http.post<IPessoa>(this.pessoaUrl,pessoa,{headers});
+      return this.http.post<IPessoa>(this.pessoaUrl,pessoa);
 
   }
 
   atualizar(pessoa: IPessoa): Observable<IPessoa>{
-    const headers = new HttpHeaders()
-    .append('Content-Type', 'application/json');
-
-  return this.http.put<IPessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa, { headers });
+      return this.http.put<IPessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa);
   }
 
   buscarPeloCodigo(codigo: number): Observable<IPessoa>{
