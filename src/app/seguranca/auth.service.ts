@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators'
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -25,6 +26,23 @@ export class AuthService {
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
     return this.http.post<void>(this.oauthTokenUrl, body, { headers, withCredentials: true  })
+            .pipe(
+              map((response: any) => {                          
+                this.armazenarToken(response.access_token)
+                return response;
+              })
+            )
+            .pipe(
+              catchError(response => {
+                if (response.status === 400) {
+                  if (response.error.error === 'invalid_grant') {     
+                    return throwError('Usuário ou Senha Inválido')
+                  }
+                }
+                
+                return throwError(response)
+              }) 
+            )
   }
 
   obterNovoAccessToken(): Observable<void> {
@@ -33,9 +51,28 @@ export class AuthService {
       .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
 
     const body = 'grant_type=refresh_token';
+    return this.http.post<void>(this.oauthTokenUrl, body, { headers, withCredentials: true })
+            .pipe(
+              map((response: any) => {      
+                console.log('Novo access token criado');
+                    
+                this.armazenarToken(response.access_token)
+                return response;
+              })              
+            )
+            .pipe(
+              catchError(
+                response => {
+                  console.error('Erro ao renovar token', response)
+                  return throwError(null);
+                }
+              )
+            )
+  }
 
-    return this.http.post<void>(this.oauthTokenUrl, body,
-        { headers, withCredentials: true });
+  isAccessTokenInvalido(){
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelper.isTokenExpired(token);
   }
 
   public armazenarToken(token: string){
