@@ -20,4 +20,20 @@ export class NavbarComponent implements OnInit {
   temPermissao(permissao: string) {
     return this.auth.temPermissao(permissao);
   }
+
+  criarNovoAccessToken() {
+    this.auth.obterNovoAccessToken()
+      .subscribe(
+        (response : any) => {
+          this.auth.armazenarToken(response.access_token)
+          console.log('Novo Access Token Criado');
+          
+        },
+        (error: any) => {
+          console.error(error);
+          
+        }
+      )
+  }
+
 }

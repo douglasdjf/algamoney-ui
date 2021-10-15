@@ -17,36 +17,33 @@ export class AuthService {
     this.carregaToken();
   }
 
-  login(usuario: string, senha: string): Promise<any> {
-     const  headers = new HttpHeaders()
+  login(usuario: string, senha: string): Observable<void> {
+    const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
       .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
 
-      const body = `username=${usuario}&password=${senha}&grant_type=password`;
+    const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-      return this.http.post<any>(this.oauthTokenUrl, body, { headers })
-      .toPromise()
-      .then(response => {
-        this.armazenarToken(response['access_token']);
-      })
-      .catch(response => {
-        if(response.status === 400){
-          if(response.error['error'] === 'invalid_grant'){
-            return Promise.reject('Usuário ou senha inválida');
-          }
-        }
-          return Promise.reject(response);
-  
-      });
-
+    return this.http.post<void>(this.oauthTokenUrl, body, { headers, withCredentials: true  })
   }
 
-  private armazenarToken(token: string){
+  obterNovoAccessToken(): Observable<void> {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
+
+    const body = 'grant_type=refresh_token';
+
+    return this.http.post<void>(this.oauthTokenUrl, body,
+        { headers, withCredentials: true });
+  }
+
+  public armazenarToken(token: string){
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token',token);
   }
 
-  private carregaToken(){
+  public carregaToken(){
       const token = localStorage.getItem('token');
 
       if(token){

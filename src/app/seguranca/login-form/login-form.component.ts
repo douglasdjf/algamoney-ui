@@ -17,14 +17,24 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(usuario: string , senha: string){
-    this.auth.login(usuario,senha)
-    .then(()=>{
-     this.router.navigate(['/lancamentos']);
-    })
-    .catch(error => {
-      this.errorHandler.handle(error);
-    });
+  login(usuario: string, senha: string) {
+
+    this.auth.login(usuario, senha)
+      .subscribe(
+        (response: any) => {
+          this.auth.armazenarToken(response.access_token)
+          this.router.navigate(['lancamentos'])
+        },
+        (response) => {          
+          let erro = response
+          if (response.status === 400) {
+            if (response.error.error === 'invalid_grant') {     
+              erro = 'Usuário ou Senha Inválido'         
+            }
+          }
+          this.errorHandler.handle(erro);
+        }
+      )
   }
 
 }
