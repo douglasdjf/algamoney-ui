@@ -4,6 +4,7 @@ import { relativeTimeThreshold } from 'moment';
 import { ConfirmationService, LazyLoadEvent,MessageService  } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ILancamento, ILancamentoFiltro,   } from 'src/app/core/intrefaces';
+import { AuthService } from 'src/app/seguranca/auth.service';
 import { LancamentoService } from '../lancamento.service';
 
 @Component({
@@ -24,7 +25,9 @@ export class LancamentosPesquisaComponent implements OnInit  {
   
   @ViewChild('tabela') grid:any;
 
-  constructor(private lancamentoService:LancamentoService,
+  constructor(
+              private auth: AuthService,
+              private lancamentoService:LancamentoService,
               private messageService:MessageService,
               private confirmationService: ConfirmationService,
               private errorHandler: ErrorHandlerService,
@@ -80,9 +83,12 @@ export class LancamentosPesquisaComponent implements OnInit  {
           (erro) =>{this.errorHandler.handle(erro)}
           
         )
+
+      
   }
 
-
-
+  temPermissao(permissao: string) {
+    return !this.auth.temPermissao(permissao);
+  }
 
 }
