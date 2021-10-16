@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { IPessoa, IPessoaFiltro } from 'src/app/core/intrefaces';
+import { AuthService } from 'src/app/seguranca/auth.service';
 import { PessoaService } from '../pessoa.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class PessoasPesquisaComponent implements OnInit{
 
   @ViewChild('tabela') grid:any;
 
-  constructor(private pessoaService: PessoaService,
+  constructor(
+              private auth: AuthService,
+              private pessoaService: PessoaService,
               private messageService:MessageService,
               private confirmationService: ConfirmationService,
               private errorHandler: ErrorHandlerService){}
@@ -88,5 +91,9 @@ export class PessoasPesquisaComponent implements OnInit{
       error => this.errorHandler.handle(error)
       );
 
+  }
+
+  temPermissao(permissao: string) {
+    return !this.auth.temPermissao(permissao);
   }
 }
