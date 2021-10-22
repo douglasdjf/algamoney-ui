@@ -4,16 +4,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {  IApiResponse, ILancamento, ILancamentoFiltro } from '../core/intrefaces';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LancamentoService {
 
-  lancamentosUrl = 'http://localhost:8080/lancamentos';
+  lancamentosUrl:string;
 
   constructor(private http: HttpClient,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe) { 
+
+                this.lancamentosUrl = `${environment.apiUrl}/lancamentos`;
+              }
 
   pesquisar(filtro: ILancamentoFiltro): Observable<IApiResponse<ILancamento>> {
       

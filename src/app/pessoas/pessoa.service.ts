@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IApiResponse, IPessoa, IPessoaFiltro } from '../core/intrefaces';
 
 @Injectable({
@@ -9,10 +10,13 @@ import { IApiResponse, IPessoa, IPessoaFiltro } from '../core/intrefaces';
 })
 export class PessoaService {
 
-  pessoaUrl = 'http://localhost:8080/pessoas';
+  pessoaUrl:string;
 
   constructor(private http:HttpClient,
-              private datePipe:DatePipe) { }
+              private datePipe:DatePipe) { 
+
+                this.pessoaUrl = `${environment.apiUrl}/pessoas`;
+              }
 
   pesquisar(filtro: IPessoaFiltro): Observable<IApiResponse<IPessoa>>{
       let params = new HttpParams()
