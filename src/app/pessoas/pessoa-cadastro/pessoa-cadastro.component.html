@@ -7,6 +7,7 @@
       </div>
 
       <div class="p-col-12 p-fluid">
+
         <label>Nome</label>
         <input pInputText type="text" name="nome"
         formControlName="nome">
@@ -17,6 +18,7 @@
          <app-message [control]="formulario.get('nome')" error="minlength"
           text="Mínimo de {{ formulario.get('nome')?.errors?.minlength?.requiredLength }} caracteres">
         </app-message> 
+
       </div>
 
       <div class="p-col-12 p-md-9 p-fluid" formGroupName="endereco">
@@ -28,23 +30,22 @@
 
         <app-message [control]="formulario.get('endereco.logradouro')" error="minlength" text=" Mínimo de {{ formulario.get('endereco.logradouro')?.errors?.minlength?.requiredLength}} caracteres"></app-message> 
       </div>
-<!--
-      <div class="p-col-12 p-md-3 p-fluid">
+
+      <div class="p-col-12 p-md-3 p-fluid" formGroupName="endereco">
         <label>Número</label>
-        <input pInputText type="text" name="endereco"
-        formControlName="numero">
+        <input pInputText type="text" name="endereco" formControlName="numero">
 
         <app-message [control]="formulario.get('endereco.numero')" error="required"
           text="Informe o número"></app-message> 
       </div>
 
-      <div class="p-col-12 p-md-4 p-fluid">
+      <div class="p-col-12 p-md-4 p-fluid" formGroupName="endereco">
         <label>Complemento</label>
         <input pInputText type="text" name="endereco" formControlName="complemento">
         
       </div>
 
-      <div class="p-col-12 p-md-4 p-fluid" >
+      <div class="p-col-12 p-md-4 p-fluid" formGroupName="endereco">
         <label>Bairro</label>
         <input pInputText type="text" name="endereco"
         formControlName="bairro">
@@ -53,7 +54,7 @@
           text="Informe o bairro"></app-message>
       </div>
 
-      <div class="p-col-12 p-md-4 p-fluid">
+      <div class="p-col-12 p-md-4 p-fluid" formGroupName="endereco">
         <label>CEP</label>
         <p-inputMask name="endereco" mask="99.999-999" id="cep"  placeholder="99.999-999"
         formControlName="cep"></p-inputMask>
@@ -62,23 +63,25 @@
           text="Informe o CEP"></app-message>
       </div>
 
-      <div class="p-col-12 p-md-6 p-fluid">
+      <div class="p-col-12 p-md-6 p-fluid" formGroupName="endereco">
         <label>Cidade</label>
-        <input pInputText type="text" name="endereco"
-        formControlName="cidade" >
+        <input pInputText type="text" name="endereco" formControlName="cidade" >
 
        <app-message [control]="formulario.get('endereco.cidade')" error="required"
           text="Informe a cidade"></app-message>
       </div>
 
-      <div class="p-col-12 p-md-6 p-fluid">
+      <div class="p-col-12 p-md-6 p-fluid" formGroupName="endereco">
         <label>Estado</label>
-        <input pInputText type="text" name="enderecos"
-        formControlName="estado">
+        <input pInputText type="text" name="endereco" formControlName="estado">
 
-     <app-message [control]="formulario.get('endereco.estado')" error="required"
-          text="Informe o estado"></app-message> 
-      </div>-->
+        <app-message [control]="formulario.get('endereco.estado')" error="required"
+              text="Informe o estado"></app-message>        
+      </div>
+
+      <div class="p-col-12 p-md-6 p-fluid">
+        <input [hidden]="true" pInputText type="hidden" name="endereco" formControlName="ativo">     
+      </div>
 
       <div class="p-col-12">
         <button pButton type="submit" label="Salvar"  class="p-button-sm" [disabled]="formulario.invalid"></button>

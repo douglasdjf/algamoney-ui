@@ -59,12 +59,13 @@ export class PessoaService {
   }
 
   atualizar(pessoa: Pessoa): Observable<Pessoa>{
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json');
       return this.http.put<Pessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa);
   }
 
   buscarPeloCodigo(codigo: number): Observable<Pessoa>{
     const headers = new HttpHeaders()
-          .append('Content-Type', 'application/json');
           return this.http.get<Pessoa>(`${this.pessoaUrl}/${codigo}`,{headers});
   }
 }

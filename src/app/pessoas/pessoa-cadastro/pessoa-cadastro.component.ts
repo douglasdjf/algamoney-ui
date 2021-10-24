@@ -38,18 +38,18 @@ export class PessoaCadastroComponent implements OnInit {
   configurarFormulario(){
     this.formulario = this.formBuilder.group({
         codigo: [],
-        nome:[null, Validators.required,Validators.minLength(5)],
+        nome: [null, [Validators.required,Validators.minLength(5) ]],
         endereco: this.formBuilder.group({
-          logradouro:[null, Validators.required, Validators.minLength(5)],
-          numero:[null, Validators.required],
-          complemento:[],
-          bairro:[null, Validators.required],
-          cep:[null, Validators.required],
-          cidade:[null, Validators.required],
-          estado:[null, Validators.required]
-        })
+          logradouro: [null,[Validators.required,Validators.minLength(5)]],
+          numero: [null,Validators.required],
+          complemento: [],
+          bairro: [null,Validators.required],
+          cep: [null,Validators.required],
+          cidade: [null,Validators.required],
+          estado: [null,Validators.required]
+        }),
+        ativo:[null,Validators.required]
     });
-
   }
 
   
@@ -66,7 +66,6 @@ export class PessoaCadastroComponent implements OnInit {
           },
           erro => this.errorHandlerService.handle(erro)
         );
-
   }
 
 
