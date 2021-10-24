@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -23,6 +23,7 @@ import { LancamentoRoutingModule } from './lancamento-routing.module';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     InputTextModule,
