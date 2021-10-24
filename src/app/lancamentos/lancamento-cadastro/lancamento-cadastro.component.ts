@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 
@@ -58,7 +58,7 @@ export class LancamentoCadastroComponent implements OnInit {
       tipo: [ 'RECEITA', Validators.required ],
       dataVencimento: [ null, Validators.required ],
       dataPagamento: [],
-      descricao: [null, [ Validators.required, Validators.minLength(5) ]],
+      descricao: [null, [ this.validarObrigatoriedade, this.validarTamanhoMinimo(5) ]],
       valor: [ null, Validators.required ],
       pessoa: this.formBuilder.group({
         codigo: [ null, Validators.required ],
@@ -70,6 +70,17 @@ export class LancamentoCadastroComponent implements OnInit {
       }),
       observacao: []
     });
+  }
+
+  // Validação customizada Validators.required
+  validarObrigatoriedade(input: FormControl){
+    return (input.value ? null :{ obrigatoriedade:true});
+  }
+// Validação customizada no lugar de Validators.minLength(5)
+  validarTamanhoMinimo(valor: number){
+    return (input: FormControl) =>{
+      return (!input.value || input.value.length >= valor) ?  null : {tamanhoMinimo: {tamanho: valor}};
+    }
   }
 
   get editando() {
