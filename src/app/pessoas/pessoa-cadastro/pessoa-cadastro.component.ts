@@ -48,7 +48,7 @@ export class PessoaCadastroComponent implements OnInit {
           cidade: [null,Validators.required],
           estado: [null,Validators.required]
         }),
-        ativo:[null,Validators.required]
+        ativo:[null]
     });
   }
 
