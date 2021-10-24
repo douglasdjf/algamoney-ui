@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { relativeTimeThreshold } from 'moment';
 import { ConfirmationService, LazyLoadEvent,MessageService  } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { ILancamento, ILancamentoFiltro,   } from 'src/app/core/intrefaces';
+
 import { AuthService } from 'src/app/seguranca/auth.service';
-import { LancamentoService } from '../lancamento.service';
+import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -14,14 +13,11 @@ import { LancamentoService } from '../lancamento.service';
 })
 export class LancamentosPesquisaComponent implements OnInit  {
 
-  filtro: ILancamentoFiltro = {
-    pagina: 0,
-    itensPorPagina: 5
-  };
+  filtro = new LancamentoFiltro();
 
   totalRegistros: number = 0;
 
-  lancamentos: ILancamento[] = [];
+  lancamentos: any[] = [];
   
   @ViewChild('tabela') grid:any;
 
@@ -59,7 +55,7 @@ export class LancamentosPesquisaComponent implements OnInit  {
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(lancamento: ILancamento):void {
+  confirmarExclusao(lancamento: any):void {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept:()=>{
@@ -68,7 +64,7 @@ export class LancamentosPesquisaComponent implements OnInit  {
     })
   }
 
-  excluir(lancamento: ILancamento){
+  excluir(lancamento: any){
     this.lancamentoService.excluir(lancamento.codigo)
         .subscribe(() =>{
            if(this.grid.first === 0){

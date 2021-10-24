@@ -10,7 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
@@ -49,6 +49,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     InputNumberModule,
     MessageModule,
     MessagesModule,
+    ReactiveFormsModule,
 
     PessoasRoutingModule
   ],

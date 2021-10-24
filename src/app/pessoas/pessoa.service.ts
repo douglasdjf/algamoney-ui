@@ -3,7 +3,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IApiResponse, IPessoa, IPessoaFiltro } from '../core/intrefaces';
+import { Pessoa } from '../core/model';
+
+export class PessoaFiltro {
+  nome?: string;
+  pagina: number = 0;
+  itensPorPagina: number = 5;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +24,7 @@ export class PessoaService {
                 this.pessoaUrl = `${environment.apiUrl}/pessoas`;
               }
 
-  pesquisar(filtro: IPessoaFiltro): Observable<IApiResponse<IPessoa>>{
+  pesquisar(filtro: PessoaFiltro): Observable<any>{
       let params = new HttpParams()
                 .set('page', filtro.pagina.toString())
                 .set('size', filtro.itensPorPagina.toString());
@@ -28,7 +34,7 @@ export class PessoaService {
       }
 
     
-    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`,{params});
+    return this.http.get<any>(`${this.pessoaUrl}`,{params});
     
   }
 
@@ -43,22 +49,22 @@ export class PessoaService {
     return this.http.put<void>(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers });
   }
 
-  listarTodas(): Observable<IApiResponse<IPessoa>>{
-    return this.http.get<IApiResponse<IPessoa>>(`${this.pessoaUrl}`);
+  listarTodas(): Observable<any>{
+    return this.http.get<any>(`${this.pessoaUrl}`);
   }
 
-  adicionar(pessoa: IPessoa): Observable<IPessoa>{
-      return this.http.post<IPessoa>(this.pessoaUrl,pessoa);
+  adicionar(pessoa: Pessoa): Observable<Pessoa>{
+      return this.http.post<Pessoa>(this.pessoaUrl,pessoa);
 
   }
 
-  atualizar(pessoa: IPessoa): Observable<IPessoa>{
-      return this.http.put<IPessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa);
+  atualizar(pessoa: Pessoa): Observable<Pessoa>{
+      return this.http.put<Pessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa);
   }
 
-  buscarPeloCodigo(codigo: number): Observable<IPessoa>{
+  buscarPeloCodigo(codigo: number): Observable<Pessoa>{
     const headers = new HttpHeaders()
           .append('Content-Type', 'application/json');
-          return this.http.get<IPessoa>(`${this.pessoaUrl}/${codigo}`,{headers});
+          return this.http.get<Pessoa>(`${this.pessoaUrl}/${codigo}`,{headers});
   }
 }

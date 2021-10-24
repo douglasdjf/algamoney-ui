@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ICategoria } from '../core/intrefaces';
+import { Categoria } from '../core/model';
 
 
 @Injectable({
@@ -16,8 +16,8 @@ export class CategoriaService {
     this.categoriasUrl = `${environment.apiUrl}/categorias`;
   }
 
-  listarTodas(): Observable<ICategoria[]> {
-         return this.http.get<ICategoria[]>(this.categoriasUrl); 
+  listarTodas(): Observable<Categoria[]> {
+         return this.http.get<Categoria[]>(this.categoriasUrl); 
   }
 
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { IPessoa, IPessoaFiltro } from 'src/app/core/intrefaces';
+import { Pessoa } from 'src/app/core/model';
 import { AuthService } from 'src/app/seguranca/auth.service';
-import { PessoaService } from '../pessoa.service';
+import { PessoaFiltro, PessoaService } from '../pessoa.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,14 +12,10 @@ import { PessoaService } from '../pessoa.service';
 })
 export class PessoasPesquisaComponent implements OnInit{
 
-  filtro: IPessoaFiltro ={
-    pagina: 0,
-    itensPorPagina: 5
-  }
 
+  filtro = new PessoaFiltro()
   totalRegistros: number = 0;
-  pessoas: IPessoa[] = [];
-
+  pessoas: any[] = [];
   @ViewChild('tabela') grid:any;
 
   constructor(
@@ -52,7 +48,7 @@ export class PessoasPesquisaComponent implements OnInit{
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(pessoa: IPessoa):void{
+  confirmarExclusao(pessoa: any):void{
       this.confirmationService.confirm({
         message : 'Tem certeza que deseja excluir?',
         accept:()=>{
@@ -61,8 +57,7 @@ export class PessoasPesquisaComponent implements OnInit{
       });
   }
 
-  excluir(pessoa: IPessoa){
-    console.log("pessoa" + pessoa.codigo);
+  excluir(pessoa: any){
     this.pessoaService.excluir(pessoa.codigo)
           .subscribe(
             () =>{

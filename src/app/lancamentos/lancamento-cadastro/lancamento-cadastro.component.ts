@@ -1,11 +1,10 @@
-import {  FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
-import { IPessoa } from 'src/app/core/intrefaces';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -99,7 +98,7 @@ export class LancamentoCadastroComponent implements OnInit {
   carregarPessoas() {
     this.pessoaService.listarTodas().subscribe(
       dados => {        
-        this.pessoas = dados.content.map((dado: IPessoa) => ({label: dado.nome, value: dado.codigo}))     
+        this.pessoas = dados.content.map((dado: any) => ({label: dado.nome, value: dado.codigo}))     
       },      
       erro => this.errorHandler.handle(erro)
     )
